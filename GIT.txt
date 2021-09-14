@@ -1,0 +1,172 @@
+----------------------------------------------------------------------------
+PART 1
+----------------------------------------------------------------------------
+git init => untuk menginisialisasi repo git yang ada di repo kita(otomatis folder menjadi repo git dengan branch master)
+
+git add <file()s> => untuk menambah file tertentu ke dalam staging area
+git add . => untuk menambah semua file ke dalam staging area
+
+git status => untuk mengetahui status repo kita saat ini ada file baru atau tidak, ada file yang berubah tidak, ada file yang hilang tidak
+
+git commit => untuk melakukan commit
+contoh (git commit) apabila commitnya panjang sehingga dibutuhkan text editor
+contoh (git commit -m "menambahkan file index.html") apabila commitnya pendek
+-m artinya tambahkan massage berikut
+
+git config => untuk memasukkan configurasi kedalam git nya
+
+git branch => untuk membuat branch
+
+git help => mencari tahu cara menggunakan perintah dengan cepat
+
+git log => melihat apa saja yang sudah dilakukan/ commit-commit apa saja yang sudah dilakukan 
+git log -3 => melihat 3 commit terakhir
+
+git log style.css => commit spesifik untuk suatu file tertentu(semua perubahan terkait file tersebut commit nya muncul)
+
+git status => untuk mengecek status file, mengecek file mana yang belum dicommit
+
+git checkout 943a3 -- style.css
+
+-------------------------------------------------------------------------------area pada repo git, ada 3
+a. working tree
+folder biasa yang memiliki file-file project
+
+b. staging area(.git)
+- memberitahu git kalau anda sudah melakukan perubahan, apakah perubahan dijadikan komit atau tidak ditentukan diarea ketiga yaitu history
+- digunakan untuk menyimpan perubahan
+- perintah => git add <file()s> atau git add .
+
+c. history(.git)
+- file yang akan dicommit harus masuk dahulu ke staging area
+- kalau sudah kita commit akan masuk ke history
+- perintah => git commit
+
+-------------------------------------------------------------------------------ketika mengedit, menambah, menghapus file di repo lalu disave itu hanya berlaku untuk file sistem saja untuk git belum berlaku. agar bisa berlaku digit maka harus di commit dulu
+
+-------------------------------------------------------------------------------
+saat commit pertama kali git masih belum tahu kita siapa 
+git config --global user.name "worstone57"
+git config --global user.email "worstone57@gmail.com"
+
+-----------------------------------------------------------------------------------
+Simbol Git di VS Code:
+
+U artinya Untracked adalah file yang belum pernah dimasukkan ke dalam Git (file baru).
+M artinya Modified adalah file yang sudah dimasukkan ke dalam database Git dan sudah pernah dimodifikasi.
+D artinya Deleted adalah file yang dihapus.
+A artinya Added adalah file yang ditambahkan ke dalam mode staged.
+
+-------------------------------------------------------------------------------
+PART 2
+-------------------------------------------------------------------------------
+apabila setelah commit file kemudian kita modifikasi 
+file tersebut lalu di save di code editor maka jika kita cek dengan 'git status'
+statusnya akan 'modified' kita bisa saja langsung commit tanpa 
+harus harus menambahkan file ke staging area atau 'git add .'
+yaitu dengan cara 'git commit -a -m' atau 'git commit -am' contohnya
+<git commit -am "menambahkan data mahasiswa">
+-----------------------------------------------------------------
+git branch <nama_branch> = membuat branch
+git branch = mengecek branch apa saja yang ada
+git log --all --decorate --oneline --graph = menampilkan visualisasi 
+branch dalam bentuk graph/ historynya
+-----------------------------------------------------------------
+cara membuat shortcut(alias hanya berlaku satu sesi ketika aplikasi git di close maka shortcut harus dibuat) => 
+alias graph="git log --all --decorate --oneline --graph"
+-----------------------------------------------------------------
+berpindah branch = 'git checkout <nama_branch>'
+misal 'git checkout dosen' maka nanti pointer head pada commit yang 
+sama akan berpindah dari yang awalnya di master berpindah ke dosen
+-----------------------------------------------------------------
+melakukan merge = git merge <nama_branch>
+
+jenis merge
+untuk melakukan marge kita harus memindah branch ke branch master dulu
+a. fast forward = terjadi ketika branch yang akan kita gabungkan berada
+dalam jalur langsung 'direct path' cabang terhubung langsung dengan master branch
+
+cara marge branch dosen ke branch master = pertama pastikan berada di branch
+master kemudian ketik 'git merge dosen'
+
+setelah di merge yang terjadi adalah branch dan pointernya yang awalnya di branch
+master berpindah ke commit branch dosen/ yang kita merge, apabila kita sudah selesai menggabungkan
+atau merge apabila sudah tidak butuh branch dosen maka bisa dihapus
+-----------------------------------------------------------------
+menghapus branch = 'git branch -d <nama_branch>'
+misal = 'git branch -d dosen'
+
+untuk mengetahui branch mana yang sudah di merge = 
+'git branch --merge'
+
+menghapus branch tanpa merge dulu = 'git branch -D <nama_branch>'
+dia tidak peduli sudah di merge atau belum tetap dihapus
+--------------------------------------------------------------
+jenis merge
+b. tree-way merge/ merge commit(sambil merge sambil commit)/ menggabungkan branch kiri dan
+branch kanan akhirnya akan ada 3 file baru yaitu mahasiswa, dosen, staff yang mana akan menjadi commit sendiri
+--------------------------------------------------------------------------
+git marge conflict = karena dua branch mengerjakan baris yang sama dalam satu repo, jadi secara otomatis git tidak dapat melakukan merge sehingga kita harus kita selesaikan secara manual, jadi kita memilih yang mau dipakai script mana yang di branch a atau branch 
+
+----------------------------------------------------------------------------
+PART 3
+----------------------------------------------------------------------------
+cara menghubungkan git dengan github = git clone <link_https>
+misalnya = git clone https://github.com/worstone57/wpu-git-test.git
+
+cara melihat nama remote = git remote
+remote harus punya nama, secara default nama remote adalah orgin dan jika kita buat sendiri remotenya maka kita dapat memberi nama remotenya bebas
+
+melihat data remote lebih detail = git remote -v
+
+kirim perubahan ke remote = git push
+
+cek username dan email git local =  git config --list
+pastikan sesuai dengan akun github kalian
+
+apabila tidak sesuai dengan github maka dapat diubah dengan
+apabila yang ingin diubah semua reponya pakai "--global"
+apabila yang ingin diubah repo tertentu pakai "--local"
+codingnya untuk username => git config --global user.name "worstone57"
+codingnya untuk email => git config --global user.email "worstone57@gmail.com"
+
+apabila ingin mengirim repositori dari git ke github maka langkah2 nya
+- membuat repositori di github misalnya nama reponya wpu-git-test-2
+- jangan mencentang readme biarkan saja kosong
+- setelah itu buat git remote di git dengan coding 
+git remote add origin https://github.com/worstone57/wpu-git-test-2.git
+git branch -M main
+git push -u origin main
+
+kemudian cek dengan git status apakah yang di github sudah terupdate sama dengan yang ada digit
+
+apabila saat kita push ternyata di githubnya sudah berubah atau sudah ada commit baru maka saat kita push dari git yang sudah kita tambahi perubahan maka akan error
+
+maka kita gunakan 'git fetch' untuk mengecek github/ remot sudah sampai manahkah commitnya beda tidak sama yang ada di git
+
+lalu ketika kita cek dengan 'git status' baru perubahan di github/remot terdeteksi
+
+setelah itu kita cek dengan graph maka akan terlihat kalau kita membentuk cabang baru karena kita mengedit di file yang sama dan baris yang sama 
+
+cara mengatasi atau menggabungkan hal tersebut dengan cara 
+- git pull(digunakan untuk mengambil file di github)
+setelah kita lakukan itu maka akan muncul conflic silah kan pilih yang mau dipakai yang mana
+- setelah itu kita commit dulu
+- setelah itu kita cek pakai git status maka akan terlihat yang ada di github sudah tertinggal
+- maka kita puss ke github agar perubahannya sama
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
