@@ -131,6 +131,8 @@ apabila yang ingin diubah semua reponya pakai "--global"
 apabila yang ingin diubah repo tertentu pakai "--local"
 codingnya untuk username => git config --global user.name "worstone57"
 codingnya untuk email => git config --global user.email "worstone57@gmail.com"
+git config --global user.name "L200180086"
+git config --global user.email "huans502@gmail.com"
 
 apabila ingin mengirim repositori dari git ke github maka langkah2 nya
 - membuat repositori di github misalnya nama reponya wpu-git-test-2
