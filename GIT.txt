@@ -159,6 +159,41 @@ setelah kita lakukan itu maka akan muncul conflic silah kan pilih yang mau dipak
 - setelah itu kita cek pakai git status maka akan terlihat yang ada di github sudah tertinggal
 - maka kita puss ke github agar perubahannya sama
 
+-------------------------------------------------------------------------------------------------------------------
+MULTIPLE REMOTES
+
+misal ada dua akun github 
+1. L200180086
+2. worstone57
+
+di akun L200180086 memiliki repositori zero-to-hero
+karena saya ingin memiliki repositori itu di akun worstone57/duplikatnya maka saya melakukan fork 
+kemudian saya juga memiliki repositori itu di local/duplikatnya dan apabila suatu hari repositori zero-to-hero di akun utama melakukan perubahan saya ingin yang di lokal dan di worstone57 juga dapat updatenya/selau syncron maka cara nya dibawah ini
+
+1. lakukan fork pada repositori zero-to-hero yang ada di akun L200180086
+2. setelah itu maka kita memiliki duplikatnya di akun worstone57
+3. salin link https untuk melakukan clone di local
+4. buka git bash di tempat dimana kita ingin menyimpan repositori yang mau kita fork
+5. lalu ketik git clone https://github.com/worstone57/zero-to-hero.git
+6. setelah itu repositori akan ada di local
+7. ketika kita cek maka remot otomatis ada cara cek 'git remote' yang secara default namanya origin untuk mengecek kepemilikan remot maka cek dengan 'git remote -v' maka dapat dilihat bahwa remot itu connect ke repo milik worstone57 jadi apabila kita melakukan perubahan yang berubah hanya di akun worstone57 saja, dan apabila repo milik L200180086 melakukan perubahan kita juga tidak akan tahu, padahal kita inginnya syncron semuanya, agar kita dapat selalu update dengan repo yang kita fork tadi maka kita harus menambahkan remot baru yang ditunjukan ke repo milik L200180086
+8. cara menambahkan remote baru 'git remote add <nama_remote_bebas> <alamat>'
+alamatnya adalah alamat url clone https repo zero-to-hero milik L200180086, setelah melakukan ini kita harusnya sudah memiliki 2 remote cara ceknya 'git remote' maka akan tampil 2 remote
+9. ketika kita cek dengan graph , pointer branch nya cuma ada 2 yaitu yang master yang ada dilokal dan origin milik worstone57, jika kita ingin melihat posisi commit ketiga-tiganya saat ini kita harus fetch dulu histori commitnya kedalam lokal kita
+10. ketik "git fetch <nama remotenya L200180086>" setelah itu dia akan mengambil commitnya
+11. ketika dicek lagi pakai graph maka posisi commitnya semuanya sudah sama 
+--------------------------------------------------------------------------------------------------------------
+apabila isi repo zero-to-hero milik L200180086 berubah
+untuk mengeceknya 
+1. bila kita cek dengan 'git status' maka keterangannya tetap update karena belum tahu kalau di repo aslinya ada perubahan supaya tahu kita harus fetch lagi jadi untuk mengeceknya menggunakan fetch
+2. ketik 'git fetch <nama remotenya L200180086>' 
+3. lalu ketika kita graph maka akan terlihat kalau repo yang ada di L200180086 mendahului 1 commit, supaya sama kita harus marge , dari git local kita ke L200180086
+4. ketik 'git merge <nama remotenya L200180086>/master' lalu klik enter
+5. maka local kita sudah sama dengan repo aslinya tapi di akun worstone57 belum sama biar sama kita push saja repo local kita ke worstone57
+6. ketik 'git push -u origin master' maka ketika kita cek denga graph ketiganya sudah sama
+
+
+
 
 
 
